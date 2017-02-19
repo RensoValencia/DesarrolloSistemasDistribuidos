@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{messages.CreateMultasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{messages.CreateMultasLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{multasController.selected.id}" title="#{messages.CreateMultasTitle_id}" required="true" requiredMessage="#{messages.CreateMultasRequiredMessage_id}"/>
+                    <h:outputLabel value="#{messages.CreateMultasLabel_motivo}" for="motivo" />
+                    <h:inputText id="motivo" value="#{multasController.selected.motivo}" title="#{messages.CreateMultasTitle_motivo}" required="true" requiredMessage="#{messages.CreateMultasRequiredMessage_motivo}"/>
+                    <h:outputLabel value="#{messages.CreateMultasLabel_importe}" for="importe" />
+                    <h:inputText id="importe" value="#{multasController.selected.importe}" title="#{messages.CreateMultasTitle_importe}" required="true" requiredMessage="#{messages.CreateMultasRequiredMessage_importe}"/>
+                    <h:outputLabel value="#{messages.CreateMultasLabel_vehiculoId}" for="vehiculoId" />
+                    <h:selectOneMenu id="vehiculoId" value="#{multasController.selected.vehiculoId}" title="#{messages.CreateMultasTitle_vehiculoId}" required="true" requiredMessage="#{messages.CreateMultasRequiredMessage_vehiculoId}">
+                        <f:selectItems value="#{vehiculoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{multasController.create}" value="#{messages.CreateMultasSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{multasController.prepareList}" value="#{messages.CreateMultasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{messages.CreateMultasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

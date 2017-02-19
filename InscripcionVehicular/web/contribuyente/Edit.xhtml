@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{messages.EditContribuyenteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{messages.EditContribuyenteLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{contribuyenteController.selected.id}" title="#{messages.EditContribuyenteTitle_id}" required="true" requiredMessage="#{messages.EditContribuyenteRequiredMessage_id}"/>
+                    <h:outputLabel value="#{messages.EditContribuyenteLabel_numeroDocumento}" for="numeroDocumento" />
+                    <h:inputText id="numeroDocumento" value="#{contribuyenteController.selected.numeroDocumento}" title="#{messages.EditContribuyenteTitle_numeroDocumento}" required="true" requiredMessage="#{messages.EditContribuyenteRequiredMessage_numeroDocumento}"/>
+                    <h:outputLabel value="#{messages.EditContribuyenteLabel_apellidoPaterno}" for="apellidoPaterno" />
+                    <h:inputText id="apellidoPaterno" value="#{contribuyenteController.selected.apellidoPaterno}" title="#{messages.EditContribuyenteTitle_apellidoPaterno}" required="true" requiredMessage="#{messages.EditContribuyenteRequiredMessage_apellidoPaterno}"/>
+                    <h:outputLabel value="#{messages.EditContribuyenteLabel_apellidoMaterno}" for="apellidoMaterno" />
+                    <h:inputText id="apellidoMaterno" value="#{contribuyenteController.selected.apellidoMaterno}" title="#{messages.EditContribuyenteTitle_apellidoMaterno}" required="true" requiredMessage="#{messages.EditContribuyenteRequiredMessage_apellidoMaterno}"/>
+                    <h:outputLabel value="#{messages.EditContribuyenteLabel_nombres}" for="nombres" />
+                    <h:inputText id="nombres" value="#{contribuyenteController.selected.nombres}" title="#{messages.EditContribuyenteTitle_nombres}" required="true" requiredMessage="#{messages.EditContribuyenteRequiredMessage_nombres}"/>
+                    <h:outputLabel value="#{messages.EditContribuyenteLabel_regimenId}" for="regimenId" />
+                    <h:inputText id="regimenId" value="#{contribuyenteController.selected.regimenId}" title="#{messages.EditContribuyenteTitle_regimenId}" required="true" requiredMessage="#{messages.EditContribuyenteRequiredMessage_regimenId}"/>
+                    <h:outputLabel value="#{messages.EditContribuyenteLabel_tipoDocumentoId}" for="tipoDocumentoId" />
+                    <h:selectOneMenu id="tipoDocumentoId" value="#{contribuyenteController.selected.tipoDocumentoId}" title="#{messages.EditContribuyenteTitle_tipoDocumentoId}" required="true" requiredMessage="#{messages.EditContribuyenteRequiredMessage_tipoDocumentoId}">
+                        <f:selectItems value="#{tipoDocumentoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{contribuyenteController.update}" value="#{messages.EditContribuyenteSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{messages.EditContribuyenteViewLink}"/>
+                <br />
+                <h:commandLink action="#{contribuyenteController.prepareList}" value="#{messages.EditContribuyenteShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{messages.EditContribuyenteIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

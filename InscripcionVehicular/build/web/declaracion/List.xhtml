@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{messages.ListDeclaracionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{messages.ListDeclaracionEmpty}" rendered="#{declaracionController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{declaracionController.items.rowCount > 0}">
+                    <h:outputText value="#{declaracionController.pagination.pageFirstItem + 1}..#{declaracionController.pagination.pageLastItem + 1}/#{declaracionController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{declaracionController.previous}" value="#{messages.Previous} #{declaracionController.pagination.pageSize}" rendered="#{declaracionController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{declaracionController.next}" value="#{messages.Next} #{declaracionController.pagination.pageSize}" rendered="#{declaracionController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{declaracionController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{messages.ListDeclaracionTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{messages.ListDeclaracionTitle_anioDeclaracion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.anioDeclaracion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{messages.ListDeclaracionTitle_motivo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.motivo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{messages.ListDeclaracionTitle_impuestoAnual}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.impuestoAnual}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{messages.ListDeclaracionTitle_vehiculoId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehiculoId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{declaracionController.prepareView}" value="#{messages.ListDeclaracionViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{declaracionController.prepareEdit}" value="#{messages.ListDeclaracionEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{declaracionController.destroy}" value="#{messages.ListDeclaracionDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{declaracionController.prepareCreate}" value="#{messages.ListDeclaracionCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{messages.ListDeclaracionIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

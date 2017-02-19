@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{messages.CreateCtaCteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{messages.CreateCtaCteLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{ctaCteController.selected.id}" title="#{messages.CreateCtaCteTitle_id}" required="true" requiredMessage="#{messages.CreateCtaCteRequiredMessage_id}"/>
+                    <h:outputLabel value="#{messages.CreateCtaCteLabel_anio}" for="anio" />
+                    <h:inputText id="anio" value="#{ctaCteController.selected.anio}" title="#{messages.CreateCtaCteTitle_anio}" required="true" requiredMessage="#{messages.CreateCtaCteRequiredMessage_anio}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{messages.CreateCtaCteLabel_periodo}" for="periodo" />
+                    <h:inputText id="periodo" value="#{ctaCteController.selected.periodo}" title="#{messages.CreateCtaCteTitle_periodo}" required="true" requiredMessage="#{messages.CreateCtaCteRequiredMessage_periodo}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{messages.CreateCtaCteLabel_montoInsoluto}" for="montoInsoluto" />
+                    <h:inputText id="montoInsoluto" value="#{ctaCteController.selected.montoInsoluto}" title="#{messages.CreateCtaCteTitle_montoInsoluto}" required="true" requiredMessage="#{messages.CreateCtaCteRequiredMessage_montoInsoluto}"/>
+                    <h:outputLabel value="#{messages.CreateCtaCteLabel_gastoEmision}" for="gastoEmision" />
+                    <h:inputText id="gastoEmision" value="#{ctaCteController.selected.gastoEmision}" title="#{messages.CreateCtaCteTitle_gastoEmision}" required="true" requiredMessage="#{messages.CreateCtaCteRequiredMessage_gastoEmision}"/>
+                    <h:outputLabel value="#{messages.CreateCtaCteLabel_factor}" for="factor" />
+                    <h:inputText id="factor" value="#{ctaCteController.selected.factor}" title="#{messages.CreateCtaCteTitle_factor}" required="true" requiredMessage="#{messages.CreateCtaCteRequiredMessage_factor}"/>
+                    <h:outputLabel value="#{messages.CreateCtaCteLabel_intereses}" for="intereses" />
+                    <h:inputText id="intereses" value="#{ctaCteController.selected.intereses}" title="#{messages.CreateCtaCteTitle_intereses}" required="true" requiredMessage="#{messages.CreateCtaCteRequiredMessage_intereses}"/>
+                    <h:outputLabel value="#{messages.CreateCtaCteLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{ctaCteController.selected.estado}" title="#{messages.CreateCtaCteTitle_estado}" required="true" requiredMessage="#{messages.CreateCtaCteRequiredMessage_estado}"/>
+                    <h:outputLabel value="#{messages.CreateCtaCteLabel_rubroId}" for="rubroId" />
+                    <h:selectOneMenu id="rubroId" value="#{ctaCteController.selected.rubroId}" title="#{messages.CreateCtaCteTitle_rubroId}" required="true" requiredMessage="#{messages.CreateCtaCteRequiredMessage_rubroId}">
+                        <f:selectItems value="#{rubroController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{messages.CreateCtaCteLabel_vehiculoId}" for="vehiculoId" />
+                    <h:selectOneMenu id="vehiculoId" value="#{ctaCteController.selected.vehiculoId}" title="#{messages.CreateCtaCteTitle_vehiculoId}" required="true" requiredMessage="#{messages.CreateCtaCteRequiredMessage_vehiculoId}">
+                        <f:selectItems value="#{vehiculoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ctaCteController.create}" value="#{messages.CreateCtaCteSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{ctaCteController.prepareList}" value="#{messages.CreateCtaCteShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{messages.CreateCtaCteIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

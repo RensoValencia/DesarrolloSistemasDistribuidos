@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{messages.ViewContribuyenteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{messages.ViewContribuyenteLabel_id}"/>
+                    <h:outputText value="#{contribuyenteController.selected.id}" title="#{messages.ViewContribuyenteTitle_id}"/>
+                    <h:outputText value="#{messages.ViewContribuyenteLabel_numeroDocumento}"/>
+                    <h:outputText value="#{contribuyenteController.selected.numeroDocumento}" title="#{messages.ViewContribuyenteTitle_numeroDocumento}"/>
+                    <h:outputText value="#{messages.ViewContribuyenteLabel_apellidoPaterno}"/>
+                    <h:outputText value="#{contribuyenteController.selected.apellidoPaterno}" title="#{messages.ViewContribuyenteTitle_apellidoPaterno}"/>
+                    <h:outputText value="#{messages.ViewContribuyenteLabel_apellidoMaterno}"/>
+                    <h:outputText value="#{contribuyenteController.selected.apellidoMaterno}" title="#{messages.ViewContribuyenteTitle_apellidoMaterno}"/>
+                    <h:outputText value="#{messages.ViewContribuyenteLabel_nombres}"/>
+                    <h:outputText value="#{contribuyenteController.selected.nombres}" title="#{messages.ViewContribuyenteTitle_nombres}"/>
+                    <h:outputText value="#{messages.ViewContribuyenteLabel_regimenId}"/>
+                    <h:outputText value="#{contribuyenteController.selected.regimenId}" title="#{messages.ViewContribuyenteTitle_regimenId}"/>
+                    <h:outputText value="#{messages.ViewContribuyenteLabel_tipoDocumentoId}"/>
+                    <h:outputText value="#{contribuyenteController.selected.tipoDocumentoId}" title="#{messages.ViewContribuyenteTitle_tipoDocumentoId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{contribuyenteController.destroyAndView}" value="#{messages.ViewContribuyenteDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{messages.ViewContribuyenteEditLink}"/>
+                <br />
+                <h:commandLink action="#{contribuyenteController.prepareCreate}" value="#{messages.ViewContribuyenteCreateLink}" />
+                <br />
+                <h:commandLink action="#{contribuyenteController.prepareList}" value="#{messages.ViewContribuyenteShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{messages.ViewContribuyenteIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{messages.CreateVehiculoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{messages.CreateVehiculoLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{vehiculoController.selected.id}" title="#{messages.CreateVehiculoTitle_id}" required="true" requiredMessage="#{messages.CreateVehiculoRequiredMessage_id}"/>
+                    <h:outputLabel value="#{messages.CreateVehiculoLabel_placa}" for="placa" />
+                    <h:inputText id="placa" value="#{vehiculoController.selected.placa}" title="#{messages.CreateVehiculoTitle_placa}" required="true" requiredMessage="#{messages.CreateVehiculoRequiredMessage_placa}"/>
+                    <h:outputLabel value="#{messages.CreateVehiculoLabel_marca}" for="marca" />
+                    <h:inputText id="marca" value="#{vehiculoController.selected.marca}" title="#{messages.CreateVehiculoTitle_marca}" required="true" requiredMessage="#{messages.CreateVehiculoRequiredMessage_marca}"/>
+                    <h:outputLabel value="#{messages.CreateVehiculoLabel_anioFabricacion}" for="anioFabricacion" />
+                    <h:inputText id="anioFabricacion" value="#{vehiculoController.selected.anioFabricacion}" title="#{messages.CreateVehiculoTitle_anioFabricacion}" required="true" requiredMessage="#{messages.CreateVehiculoRequiredMessage_anioFabricacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{messages.CreateVehiculoLabel_categoria}" for="categoria" />
+                    <h:inputText id="categoria" value="#{vehiculoController.selected.categoria}" title="#{messages.CreateVehiculoTitle_categoria}" required="true" requiredMessage="#{messages.CreateVehiculoRequiredMessage_categoria}"/>
+                    <h:outputLabel value="#{messages.CreateVehiculoLabel_valorAdquisicion}" for="valorAdquisicion" />
+                    <h:inputText id="valorAdquisicion" value="#{vehiculoController.selected.valorAdquisicion}" title="#{messages.CreateVehiculoTitle_valorAdquisicion}" required="true" requiredMessage="#{messages.CreateVehiculoRequiredMessage_valorAdquisicion}"/>
+                    <h:outputLabel value="#{messages.CreateVehiculoLabel_anioAdquisicion}" for="anioAdquisicion" />
+                    <h:inputText id="anioAdquisicion" value="#{vehiculoController.selected.anioAdquisicion}" title="#{messages.CreateVehiculoTitle_anioAdquisicion}" required="true" requiredMessage="#{messages.CreateVehiculoRequiredMessage_anioAdquisicion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{messages.CreateVehiculoLabel_primeraFechaRegistroPublico}" for="primeraFechaRegistroPublico" />
+                    <h:inputText id="primeraFechaRegistroPublico" value="#{vehiculoController.selected.primeraFechaRegistroPublico}" title="#{messages.CreateVehiculoTitle_primeraFechaRegistroPublico}" required="true" requiredMessage="#{messages.CreateVehiculoRequiredMessage_primeraFechaRegistroPublico}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{messages.CreateVehiculoLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{vehiculoController.selected.descripcion}" title="#{messages.CreateVehiculoTitle_descripcion}" required="true" requiredMessage="#{messages.CreateVehiculoRequiredMessage_descripcion}"/>
+                    <h:outputLabel value="#{messages.CreateVehiculoLabel_tipoTransporteId}" for="tipoTransporteId" />
+                    <h:selectOneMenu id="tipoTransporteId" value="#{vehiculoController.selected.tipoTransporteId}" title="#{messages.CreateVehiculoTitle_tipoTransporteId}" required="true" requiredMessage="#{messages.CreateVehiculoRequiredMessage_tipoTransporteId}">
+                        <f:selectItems value="#{tipoTransporteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{vehiculoController.create}" value="#{messages.CreateVehiculoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{vehiculoController.prepareList}" value="#{messages.CreateVehiculoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{messages.CreateVehiculoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

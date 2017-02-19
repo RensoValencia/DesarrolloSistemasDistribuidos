@@ -1,0 +1,4 @@
+ivone,barbara,mori
+jerson,aquino,fuentes
+kike,osvaldo,gusman
+renso,valencia,ventura
