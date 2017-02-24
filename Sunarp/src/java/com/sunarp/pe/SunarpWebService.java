@@ -9,7 +9,6 @@ import java.util.List;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
-
 /**
  * @author RENSO
  */
@@ -26,7 +25,6 @@ public class SunarpWebService {
         String informacion = "No existe la informacion";
         try {
             for(Sunarp sunarp: muestraContenido("E:\\sunarp.csv")) {
-                System.out.println("sunarp: " + sunarp);
                 if(sunarp.getPlaca().equals(placa) && sunarp.getNrodoc().equals(numeroDocumento)) {
                     informacion = sunarp.toString();
                     break;
