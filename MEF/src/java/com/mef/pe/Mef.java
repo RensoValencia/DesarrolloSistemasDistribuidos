@@ -23,7 +23,7 @@ public class Mef {
         
         String monto = "No existe la informacion";
         try {
-            for(MefBean bean: muestraContenido("E:\\auto17.CSV")) {
+            for(MefBean bean: muestraContenido("E:\\mef.csv")) {
                 if(bean.getMarca().equals(marca) && bean.getM_model().equals(modelo)
                        && bean.getT_ano().equals(anio)) {
                     if(fabricacion.equals("1")) {
@@ -47,21 +47,33 @@ public class Mef {
         List<MefBean> listaMef = new ArrayList<>();
         FileReader f = new FileReader(archivo);
         BufferedReader b = new BufferedReader(f);
+        try {
+            int numero = 0;
         while((cadena = b.readLine())!=null) {
             MefBean mefBean = new MefBean();
-            String dividir[] = cadena.split(",");
+            String dividir[] = cadena.split("\\|");
             mefBean.setT_ano(dividir[0]);
             mefBean.setT_codmar(dividir[1]);
             mefBean.setMarca(dividir[2]);
             mefBean.setT_tipmod(dividir[3]);
             mefBean.setM_model(dividir[4]);
             mefBean.setT_tegori(dividir[5]);
-            mefBean.setM_cctrac(dividir[6]);
+            try {
+                mefBean.setM_cctrac(dividir[6]);
+            } catch(ArrayIndexOutOfBoundsException e) {
+                mefBean.setM_cctrac("Sin definicion");
+            }
+            
             mefBean.setT_ano1(dividir[7]);
             mefBean.setT_ano2(dividir[8]);
             mefBean.setT_ano3(dividir[9]);
+            System.out.println(numero + " - mefBean: " + mefBean);
+            numero++;
             listaMef.add(mefBean);
             
+        }
+        } catch(Exception ex) {
+            ex.printStackTrace();
         }
         b.close();
         return listaMef;
