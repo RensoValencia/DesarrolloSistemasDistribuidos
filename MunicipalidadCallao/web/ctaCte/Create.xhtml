@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CtaCteCreateDlg" widgetVar="CtaCteCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{messages.CreateCtaCteTitle}">
+            <h:form id="CtaCteCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ctaCteController.selected != null}">
+                        <p:outputLabel value="#{messages.CreateCtaCteLabel_anio}" for="anio" />
+                        <p:calendar id="anio" pattern="MM/dd/yyyy HH:mm:ss" value="#{ctaCteController.selected.anio}" title="#{messages.EditCtaCteTitle_anio}" required="true" requiredMessage="#{messages.EditCtaCteRequiredMessage_anio}" showOn="button"/>
+                        <p:outputLabel value="#{messages.CreateCtaCteLabel_periodo}" for="periodo" />
+                        <p:calendar id="periodo" pattern="MM/dd/yyyy HH:mm:ss" value="#{ctaCteController.selected.periodo}" title="#{messages.EditCtaCteTitle_periodo}" required="true" requiredMessage="#{messages.EditCtaCteRequiredMessage_periodo}" showOn="button"/>
+                        <p:outputLabel value="#{messages.CreateCtaCteLabel_montoInsoluto}" for="montoInsoluto" />
+                        <p:inputText id="montoInsoluto" value="#{ctaCteController.selected.montoInsoluto}" title="#{messages.CreateCtaCteTitle_montoInsoluto}" required="true" requiredMessage="#{messages.CreateCtaCteRequiredMessage_montoInsoluto}"/>
+                        <p:outputLabel value="#{messages.CreateCtaCteLabel_gastoEmision}" for="gastoEmision" />
+                        <p:inputText id="gastoEmision" value="#{ctaCteController.selected.gastoEmision}" title="#{messages.CreateCtaCteTitle_gastoEmision}" required="true" requiredMessage="#{messages.CreateCtaCteRequiredMessage_gastoEmision}"/>
+                        <p:outputLabel value="#{messages.CreateCtaCteLabel_factor}" for="factor" />
+                        <p:inputText id="factor" value="#{ctaCteController.selected.factor}" title="#{messages.CreateCtaCteTitle_factor}" required="true" requiredMessage="#{messages.CreateCtaCteRequiredMessage_factor}"/>
+                        <p:outputLabel value="#{messages.CreateCtaCteLabel_intereses}" for="intereses" />
+                        <p:inputText id="intereses" value="#{ctaCteController.selected.intereses}" title="#{messages.CreateCtaCteTitle_intereses}" required="true" requiredMessage="#{messages.CreateCtaCteRequiredMessage_intereses}"/>
+                        <p:outputLabel value="#{messages.CreateCtaCteLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{ctaCteController.selected.estado}" title="#{messages.CreateCtaCteTitle_estado}" required="true" requiredMessage="#{messages.CreateCtaCteRequiredMessage_estado}"/>
+                        <p:outputLabel value="#{messages.CreateCtaCteLabel_idRubro}" for="idRubro" />
+                        <p:selectOneMenu id="idRubro" value="#{ctaCteController.selected.idRubro}" required="true" requiredMessage="#{messages.EditCtaCteRequiredMessage_idRubro}">
+                            <f:selectItems value="#{rubroController.itemsAvailableSelectOne}"
+                                           var="idRubroItem"
+                                           itemValue="#{idRubroItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{messages.CreateCtaCteLabel_idVehiculo}" for="idVehiculo" />
+                        <p:selectOneMenu id="idVehiculo" value="#{ctaCteController.selected.idVehiculo}" required="true" requiredMessage="#{messages.EditCtaCteRequiredMessage_idVehiculo}">
+                            <f:selectItems value="#{vehiculoController.itemsAvailableSelectOne}"
+                                           var="idVehiculoItem"
+                                           itemValue="#{idVehiculoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ctaCteController.create}" value="#{messages.Save}" update="display,:CtaCteListForm:datalist,:growl" oncomplete="handleSubmit(args,'CtaCteCreateDialog');"/>
+                    <p:commandButton value="#{messages.Cancel}" onclick="CtaCteCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

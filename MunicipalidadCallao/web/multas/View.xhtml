@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MultasViewDlg" widgetVar="MultasViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{messages.ViewMultasTitle}">
+            <h:form id="MultasViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{multasController.selected != null}">
+                        <h:outputText value="#{messages.ViewMultasLabel_id}"/>
+                        <h:outputText value="#{multasController.selected.id}" title="#{messages.ViewMultasTitle_id}"/>
+                        <h:outputText value="#{messages.ViewMultasLabel_motivo}"/>
+                        <h:outputText value="#{multasController.selected.motivo}" title="#{messages.ViewMultasTitle_motivo}"/>
+                        <h:outputText value="#{messages.ViewMultasLabel_importe}"/>
+                        <h:outputText value="#{multasController.selected.importe}" title="#{messages.ViewMultasTitle_importe}"/>
+                        <h:outputText value="#{messages.ViewMultasLabel_idVehiculo}"/>
+                        <h:outputText value="#{multasController.selected.idVehiculo}" title="#{messages.ViewMultasTitle_idVehiculo}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{messages.Close}" onclick="MultasViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

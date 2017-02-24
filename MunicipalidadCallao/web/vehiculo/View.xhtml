@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VehiculoViewDlg" widgetVar="VehiculoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{messages.ViewVehiculoTitle}">
+            <h:form id="VehiculoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{vehiculoController.selected != null}">
+                        <h:outputText value="#{messages.ViewVehiculoLabel_id}"/>
+                        <h:outputText value="#{vehiculoController.selected.id}" title="#{messages.ViewVehiculoTitle_id}"/>
+                        <h:outputText value="#{messages.ViewVehiculoLabel_placa}"/>
+                        <h:outputText value="#{vehiculoController.selected.placa}" title="#{messages.ViewVehiculoTitle_placa}"/>
+                        <h:outputText value="#{messages.ViewVehiculoLabel_marca}"/>
+                        <h:outputText value="#{vehiculoController.selected.marca}" title="#{messages.ViewVehiculoTitle_marca}"/>
+                        <h:outputText value="#{messages.ViewVehiculoLabel_modelo}"/>
+                        <h:outputText value="#{vehiculoController.selected.modelo}" title="#{messages.ViewVehiculoTitle_modelo}"/>
+                        <h:outputText value="#{messages.ViewVehiculoLabel_categoria}"/>
+                        <h:outputText value="#{vehiculoController.selected.categoria}" title="#{messages.ViewVehiculoTitle_categoria}"/>
+                        <h:outputText value="#{messages.ViewVehiculoLabel_anioFabricacion}"/>
+                        <h:outputText value="#{vehiculoController.selected.anioFabricacion}" title="#{messages.ViewVehiculoTitle_anioFabricacion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{messages.ViewVehiculoLabel_anioAdquisicion}"/>
+                        <h:outputText value="#{vehiculoController.selected.anioAdquisicion}" title="#{messages.ViewVehiculoTitle_anioAdquisicion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{messages.ViewVehiculoLabel_valorAdquisicion}"/>
+                        <h:outputText value="#{vehiculoController.selected.valorAdquisicion}" title="#{messages.ViewVehiculoTitle_valorAdquisicion}"/>
+                        <h:outputText value="#{messages.ViewVehiculoLabel_primeraFechaRegistroPublico}"/>
+                        <h:outputText value="#{vehiculoController.selected.primeraFechaRegistroPublico}" title="#{messages.ViewVehiculoTitle_primeraFechaRegistroPublico}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{messages.ViewVehiculoLabel_descripcion}"/>
+                        <h:outputText value="#{vehiculoController.selected.descripcion}" title="#{messages.ViewVehiculoTitle_descripcion}"/>
+                        <h:outputText value="#{messages.ViewVehiculoLabel_idTipoTransporte}"/>
+                        <h:outputText value="#{vehiculoController.selected.idTipoTransporte}" title="#{messages.ViewVehiculoTitle_idTipoTransporte}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{messages.Close}" onclick="VehiculoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

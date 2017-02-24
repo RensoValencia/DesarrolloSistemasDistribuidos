@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VehiculoEditDlg" widgetVar="VehiculoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{messages.EditVehiculoTitle}">
+            <h:form id="VehiculoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{vehiculoController.selected != null}">
+                        <p:outputLabel value="#{messages.EditVehiculoLabel_placa}" for="placa" />
+                        <p:inputText id="placa" value="#{vehiculoController.selected.placa}" title="#{messages.EditVehiculoTitle_placa}" required="true" requiredMessage="#{messages.EditVehiculoRequiredMessage_placa}"/>
+                        <p:outputLabel value="#{messages.EditVehiculoLabel_marca}" for="marca" />
+                        <p:inputText id="marca" value="#{vehiculoController.selected.marca}" title="#{messages.EditVehiculoTitle_marca}" required="true" requiredMessage="#{messages.EditVehiculoRequiredMessage_marca}"/>
+                        <p:outputLabel value="#{messages.EditVehiculoLabel_modelo}" for="modelo" />
+                        <p:inputText id="modelo" value="#{vehiculoController.selected.modelo}" title="#{messages.EditVehiculoTitle_modelo}" required="true" requiredMessage="#{messages.EditVehiculoRequiredMessage_modelo}"/>
+                        <p:outputLabel value="#{messages.EditVehiculoLabel_categoria}" for="categoria" />
+                        <p:inputText id="categoria" value="#{vehiculoController.selected.categoria}" title="#{messages.EditVehiculoTitle_categoria}" required="true" requiredMessage="#{messages.EditVehiculoRequiredMessage_categoria}"/>
+                        <p:outputLabel value="#{messages.EditVehiculoLabel_anioFabricacion}" for="anioFabricacion" />
+                        <p:calendar id="anioFabricacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{vehiculoController.selected.anioFabricacion}" title="#{messages.EditVehiculoTitle_anioFabricacion}" required="true" requiredMessage="#{messages.EditVehiculoRequiredMessage_anioFabricacion}" showOn="button"/>
+                        <p:outputLabel value="#{messages.EditVehiculoLabel_anioAdquisicion}" for="anioAdquisicion" />
+                        <p:calendar id="anioAdquisicion" pattern="MM/dd/yyyy HH:mm:ss" value="#{vehiculoController.selected.anioAdquisicion}" title="#{messages.EditVehiculoTitle_anioAdquisicion}" required="true" requiredMessage="#{messages.EditVehiculoRequiredMessage_anioAdquisicion}" showOn="button"/>
+                        <p:outputLabel value="#{messages.EditVehiculoLabel_valorAdquisicion}" for="valorAdquisicion" />
+                        <p:inputText id="valorAdquisicion" value="#{vehiculoController.selected.valorAdquisicion}" title="#{messages.EditVehiculoTitle_valorAdquisicion}" required="true" requiredMessage="#{messages.EditVehiculoRequiredMessage_valorAdquisicion}"/>
+                        <p:outputLabel value="#{messages.EditVehiculoLabel_primeraFechaRegistroPublico}" for="primeraFechaRegistroPublico" />
+                        <p:calendar id="primeraFechaRegistroPublico" pattern="MM/dd/yyyy HH:mm:ss" value="#{vehiculoController.selected.primeraFechaRegistroPublico}" title="#{messages.EditVehiculoTitle_primeraFechaRegistroPublico}" required="true" requiredMessage="#{messages.EditVehiculoRequiredMessage_primeraFechaRegistroPublico}" showOn="button"/>
+                        <p:outputLabel value="#{messages.EditVehiculoLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{vehiculoController.selected.descripcion}" title="#{messages.EditVehiculoTitle_descripcion}" required="true" requiredMessage="#{messages.EditVehiculoRequiredMessage_descripcion}"/>
+                        <p:outputLabel value="#{messages.EditVehiculoLabel_idTipoTransporte}" for="idTipoTransporte" />
+                        <p:selectOneMenu id="idTipoTransporte" value="#{vehiculoController.selected.idTipoTransporte}" required="true" requiredMessage="#{messages.EditVehiculoRequiredMessage_idTipoTransporte}">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{tipoTransporteController.itemsAvailableSelectOne}"
+                                           var="idTipoTransporteItem"
+                                           itemValue="#{idTipoTransporteItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{vehiculoController.update}" value="#{messages.Save}" update="display,:VehiculoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'VehiculoEditDialog');"/>
+                    <p:commandButton value="#{messages.Cancel}" onclick="VehiculoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

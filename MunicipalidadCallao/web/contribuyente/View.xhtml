@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ContribuyenteViewDlg" widgetVar="ContribuyenteViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{messages.ViewContribuyenteTitle}">
+            <h:form id="ContribuyenteViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{contribuyenteController.selected != null}">
+                        <h:outputText value="#{messages.ViewContribuyenteLabel_id}"/>
+                        <h:outputText value="#{contribuyenteController.selected.id}" title="#{messages.ViewContribuyenteTitle_id}"/>
+                        <h:outputText value="#{messages.ViewContribuyenteLabel_usuario}"/>
+                        <h:outputText value="#{contribuyenteController.selected.usuario}" title="#{messages.ViewContribuyenteTitle_usuario}"/>
+                        <h:outputText value="#{messages.ViewContribuyenteLabel_clave}"/>
+                        <h:outputText value="#{contribuyenteController.selected.clave}" title="#{messages.ViewContribuyenteTitle_clave}"/>
+                        <h:outputText value="#{messages.ViewContribuyenteLabel_numeroDocumento}"/>
+                        <h:outputText value="#{contribuyenteController.selected.numeroDocumento}" title="#{messages.ViewContribuyenteTitle_numeroDocumento}"/>
+                        <h:outputText value="#{messages.ViewContribuyenteLabel_nombres}"/>
+                        <h:outputText value="#{contribuyenteController.selected.nombres}" title="#{messages.ViewContribuyenteTitle_nombres}"/>
+                        <h:outputText value="#{messages.ViewContribuyenteLabel_distrito}"/>
+                        <h:outputText value="#{contribuyenteController.selected.distrito}" title="#{messages.ViewContribuyenteTitle_distrito}"/>
+                        <h:outputText value="#{messages.ViewContribuyenteLabel_direccion}"/>
+                        <h:outputText value="#{contribuyenteController.selected.direccion}" title="#{messages.ViewContribuyenteTitle_direccion}"/>
+                        <h:outputText value="#{messages.ViewContribuyenteLabel_idRegimen}"/>
+                        <h:outputText value="#{contribuyenteController.selected.idRegimen}" title="#{messages.ViewContribuyenteTitle_idRegimen}"/>
+                        <h:outputText value="#{messages.ViewContribuyenteLabel_idTipoPersona}"/>
+                        <h:outputText value="#{contribuyenteController.selected.idTipoPersona}" title="#{messages.ViewContribuyenteTitle_idTipoPersona}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{messages.Close}" onclick="ContribuyenteViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

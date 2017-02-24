@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ContribuyenteCreateDlg" widgetVar="ContribuyenteCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{messages.CreateContribuyenteTitle}">
+            <h:form id="ContribuyenteCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{contribuyenteController.selected != null}">
+                        <p:outputLabel value="#{messages.CreateContribuyenteLabel_usuario}" for="usuario" />
+                        <p:inputText id="usuario" value="#{contribuyenteController.selected.usuario}" title="#{messages.CreateContribuyenteTitle_usuario}" required="true" requiredMessage="#{messages.CreateContribuyenteRequiredMessage_usuario}"/>
+                        <p:outputLabel value="#{messages.CreateContribuyenteLabel_clave}" for="clave" />
+                        <p:inputText id="clave" value="#{contribuyenteController.selected.clave}" title="#{messages.CreateContribuyenteTitle_clave}" required="true" requiredMessage="#{messages.CreateContribuyenteRequiredMessage_clave}"/>
+                        <p:outputLabel value="#{messages.CreateContribuyenteLabel_numeroDocumento}" for="numeroDocumento" />
+                        <p:inputText id="numeroDocumento" value="#{contribuyenteController.selected.numeroDocumento}" title="#{messages.CreateContribuyenteTitle_numeroDocumento}" required="true" requiredMessage="#{messages.CreateContribuyenteRequiredMessage_numeroDocumento}"/>
+                        <p:outputLabel value="#{messages.CreateContribuyenteLabel_nombres}" for="nombres" />
+                        <p:inputText id="nombres" value="#{contribuyenteController.selected.nombres}" title="#{messages.CreateContribuyenteTitle_nombres}" required="true" requiredMessage="#{messages.CreateContribuyenteRequiredMessage_nombres}"/>
+                        <p:outputLabel value="#{messages.CreateContribuyenteLabel_distrito}" for="distrito" />
+                        <p:inputText id="distrito" value="#{contribuyenteController.selected.distrito}" title="#{messages.CreateContribuyenteTitle_distrito}" required="true" requiredMessage="#{messages.CreateContribuyenteRequiredMessage_distrito}"/>
+                        <p:outputLabel value="#{messages.CreateContribuyenteLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{contribuyenteController.selected.direccion}" title="#{messages.CreateContribuyenteTitle_direccion}" required="true" requiredMessage="#{messages.CreateContribuyenteRequiredMessage_direccion}"/>
+                        <p:outputLabel value="#{messages.CreateContribuyenteLabel_idRegimen}" for="idRegimen" />
+                        <p:selectOneMenu id="idRegimen" value="#{contribuyenteController.selected.idRegimen}" required="true" requiredMessage="#{messages.EditContribuyenteRequiredMessage_idRegimen}">
+                            <f:selectItems value="#{regimenController.itemsAvailableSelectOne}"
+                                           var="idRegimenItem"
+                                           itemValue="#{idRegimenItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{messages.CreateContribuyenteLabel_idTipoPersona}" for="idTipoPersona" />
+                        <p:selectOneMenu id="idTipoPersona" value="#{contribuyenteController.selected.idTipoPersona}" required="true" requiredMessage="#{messages.EditContribuyenteRequiredMessage_idTipoPersona}">
+                            <f:selectItems value="#{tipoPersonaController.itemsAvailableSelectOne}"
+                                           var="idTipoPersonaItem"
+                                           itemValue="#{idTipoPersonaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{contribuyenteController.create}" value="#{messages.Save}" update="display,:ContribuyenteListForm:datalist,:growl" oncomplete="handleSubmit(args,'ContribuyenteCreateDialog');"/>
+                    <p:commandButton value="#{messages.Cancel}" onclick="ContribuyenteCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RegimenEditDlg" widgetVar="RegimenEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{messages.EditRegimenTitle}">
+            <h:form id="RegimenEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{regimenController.selected != null}">
+                        <p:outputLabel value="#{messages.EditRegimenLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{regimenController.selected.id}" title="#{messages.EditRegimenTitle_id}" required="true" requiredMessage="#{messages.EditRegimenRequiredMessage_id}"/>
+                        <p:outputLabel value="#{messages.EditRegimenLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{regimenController.selected.descripcion}" title="#{messages.EditRegimenTitle_descripcion}" required="true" requiredMessage="#{messages.EditRegimenRequiredMessage_descripcion}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{regimenController.update}" value="#{messages.Save}" update="display,:RegimenListForm:datalist,:growl" oncomplete="handleSubmit(args, 'RegimenEditDialog');"/>
+                    <p:commandButton value="#{messages.Cancel}" onclick="RegimenEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

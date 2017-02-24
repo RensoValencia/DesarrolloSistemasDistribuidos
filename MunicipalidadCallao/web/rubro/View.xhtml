@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RubroViewDlg" widgetVar="RubroViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{messages.ViewRubroTitle}">
+            <h:form id="RubroViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{rubroController.selected != null}">
+                        <h:outputText value="#{messages.ViewRubroLabel_id}"/>
+                        <h:outputText value="#{rubroController.selected.id}" title="#{messages.ViewRubroTitle_id}"/>
+                        <h:outputText value="#{messages.ViewRubroLabel_descripcion}"/>
+                        <h:outputText value="#{rubroController.selected.descripcion}" title="#{messages.ViewRubroTitle_descripcion}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{messages.Close}" onclick="RubroViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
